@@ -14,15 +14,19 @@ class Requests(BaseHTTPRequestHandler):
 
     var = ""
     language = ""
+    accessKey = ""
+    secretAccessKey = ""
 
     def translate(self,phrase):
 
         global language
+        global accessKey
+        global secretAccessKey
 
         kks = pykakasi.kakasi()
 
-        client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= "AKIAZ562BTHPE7K4TMVS",
-            aws_secret_access_key= "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")
+        client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= accessKey,
+            aws_secret_access_key= secretAccessKey)
 
         result = client.translate_text(Text=phrase, SourceLanguageCode="auto",TargetLanguageCode=language)
 
@@ -68,12 +72,17 @@ class Requests(BaseHTTPRequestHandler):
     def do_POST(self):
         global var
         global language
+        global accessKey
+        global secretAccessKey
+
         content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
         post_data = self.rfile.read(content_length) # <--- Gets the data itself
 
         resultPost = json.loads(post_data.decode('utf-8'))
         var = resultPost['image']
         language = resultPost['language']
+        accessKey = resultPost['accessKey']
+        secretAccessKey = resultPost['secretAccessKey']
         
         self._set_response()
         self.wfile.write("Image Link: {}".format(var).encode('utf-8'))
