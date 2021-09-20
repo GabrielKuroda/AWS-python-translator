@@ -45,10 +45,10 @@ class Requests(BaseHTTPRequestHandler):
     def do_GET(self):
         global var
         self._set_response() 
-        class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
-        model = keras.models.load_model('projetoTensorFlow.pth')
-        img_height = 180
-        img_width = 180
+        class_names = ['borboleta', 'cachorro', 'dente-de-leao', 'gafanhoto', 'gato', 'girassol', 'joaninha', 'libelula', 'margarida', 'monitor', 'mosquito', 'mouse', 'rosa', 'teclado', 'tulipa']
+        model = keras.models.load_model('projetoUsandoTransferLearning.pth')
+        img_height = 130
+        img_width = 130
         url = var
         res = request.urlopen(url).read()
         img = Image.open(BytesIO(res)).resize((img_height,img_width))
