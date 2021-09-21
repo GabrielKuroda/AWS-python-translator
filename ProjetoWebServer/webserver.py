@@ -12,45 +12,61 @@ import json
 
 class Requests(BaseHTTPRequestHandler):
 
-    var = ""
-    language = ""
+    urlImage = ""
+    languageTarget = ""
     accessKey = ""
     secretAccessKey = ""
 
-    def translate(self,phrase):
+    def callAWSTranslate(self,phrase):
 
-        global language
+        global languageTarget
         global accessKey
         global secretAccessKey
-
-        kks = pykakasi.kakasi()
 
         client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= accessKey,
             aws_secret_access_key= secretAccessKey)
 
-        result = client.translate_text(Text=phrase, SourceLanguageCode="auto",TargetLanguageCode=language)
+        return client.translate_text(Text=phrase, SourceLanguageCode="auto",TargetLanguageCode=languageTarget)
 
-        text = result['TranslatedText']
+    def translate(self,phrase):
 
-        if language in "ja":
-           return kks.convert(text)[0]['passport']
+        return self.callAWSTranslate(phrase)['TranslatedText']
+
+    def getLanguageName(self,languageCode):
+
+        if languageCode in "ja":
+            return "Japanese"
+        elif languageCode in "pt":
+            return "Portuguese"
+        elif languageCode in "en":
+            return "English"
+        elif languageCode in "sp":
+            return "Spanish"
         else:
-           return text
+            return "Unknown"
 
+    def getLanguageFrom(self,phrase):
+
+        result = self.callAWSTranslate(phrase)
+
+        return self.getLanguageName(result['SourceLanguageCode'])
+        
     def _set_response(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
     def do_GET(self):
-        global var
+        global urlImage
+        global languageTarget
+
         self._set_response() 
-        class_names = ['borboleta', 'cachorro', 'dente-de-leao', 'gafanhoto', 'gato', 'girassol', 'joaninha', 'libelula', 'margarida', 'monitor', 'mosquito', 'mouse', 'rosa', 'teclado', 'tulipa']
+
+        class_names = ['borboleta', 'cachorro', 'dente-de-leao', 'gafanhoto', 'gato', 'girassol', 'joaninha', 'libelulas', 'margarida', 'monitor', 'mosquito', 'mouse', 'rosa', 'teclado', 'tulipa']
         model = keras.models.load_model('projetoUsandoTransferLearning.pth')
         img_height = 130
         img_width = 130
-        url = var
-        res = request.urlopen(url).read()
+        res = request.urlopen(urlImage).read()
         img = Image.open(BytesIO(res)).resize((img_height,img_width))
 
         img_array = keras.preprocessing.image.img_to_array(img)
@@ -61,17 +77,19 @@ class Requests(BaseHTTPRequestHandler):
 
         tranlated = self.translate(result)
 
-        self.wfile.write(bytes("<html><head><title>IA Projeto 6</title></head>", "utf-8"))
+        self.wfile.write(bytes("<html><head><title>IA Projeto 6</title></head><meta charset=\"utf-8\" />", "utf-8"))
         self.wfile.write(bytes("<body>", "utf-8"))
+        self.wfile.write(bytes("<p>Source Language: %s</p>" % self.getLanguageFrom(result), "utf-8"))
         self.wfile.write(bytes("<p>Result: %s</p>" % result, "utf-8"))
+        self.wfile.write(bytes("<p>Target Language: %s</p>" % self.getLanguageName(languageTarget), "utf-8"))
         self.wfile.write(bytes("<p>Result Translated: %s</p>" % tranlated, "utf-8"))
         self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
-        self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % url, "utf-8"))
+        self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
         self.wfile.write(bytes("</body></html>", "utf-8"))
 
     def do_POST(self):
-        global var
-        global language
+        global urlImage
+        global languageTarget
         global accessKey
         global secretAccessKey
 
@@ -79,14 +97,14 @@ class Requests(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length) # <--- Gets the data itself
 
         resultPost = json.loads(post_data.decode('utf-8'))
-        var = resultPost['image']
-        language = resultPost['language']
+        urlImage = resultPost['image']
+        languageTarget = resultPost['languageTarget']
         accessKey = resultPost['accessKey']
         secretAccessKey = resultPost['secretAccessKey']
         
         self._set_response()
-        self.wfile.write("Image Link: {}".format(var).encode('utf-8'))
-        self.wfile.write("Language: {}".format(language).encode('utf-8'))
+        self.wfile.write("Image Link: {}".format(urlImage).encode('utf-8'))
+        self.wfile.write("language Target: {}".format(languageTarget).encode('utf-8'))
 
 def run(server_class=HTTPServer, handler_class=Requests, port=8000):
     logging.basicConfig(level=logging.INFO)
