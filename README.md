@@ -8,8 +8,8 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 ### :snake: Python
          
 # Autores
-Gabriel Tatsuya Avi Kuroda <br>
-Leonardo Aparecido Dos Santos
+Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
+Leonardo Aparecido Dos Santos (https://github.com/leonardosantos1)
 	 
 <h4 align="center"> 
 	🚧  Projeto 🚀 Em construção...  🚧
