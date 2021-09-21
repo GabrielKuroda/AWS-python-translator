@@ -7,7 +7,10 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 # Tecnologias utilizadas 
 ## :snake: Python
          
-         
+# Autores
+Gabriel Tatsuya Avi Kuroda
+Leonardo Aparecido Dos Santos
+	 
 <h4 align="center"> 
 	🚧  Projeto 🚀 Em construção...  🚧
 </h4>
