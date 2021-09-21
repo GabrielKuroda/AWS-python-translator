@@ -11,6 +11,8 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido Dos Santos (https://github.com/leonardosantos1)
 	 
+<br>
+<br>
 <h4 align="center"> 
 	🚧  Projeto 🚀 Em construção...  🚧
 </h4>
