@@ -8,7 +8,7 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 ## :snake: Python
          
 # Autores
-Gabriel Tatsuya Avi Kuroda
+Gabriel Tatsuya Avi Kuroda <br>
 Leonardo Aparecido Dos Santos
 	 
 <h4 align="center"> 
