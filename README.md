@@ -6,10 +6,12 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
       
 # Tecnologias utilizadas 
 #### :snake: Python
+<hr>  
          
 # Autores
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido Dos Santos (https://github.com/leonardosantos1)
+<hr>  
 	 
 <br>
 <br>
