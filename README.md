@@ -5,7 +5,7 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 <hr>  
       
 # Tecnologias utilizadas 
-### :snake: Python
+#### :snake: Python
          
 # Autores
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
