@@ -27,14 +27,15 @@ python webserver.py
 
 OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
 ```
+<hr>  
 
 # Próximos objetivos
 
 - [ ] Acréscimo de novas classes
 - [ ] Front-end
-- [ ] Adicionar voz
-- [ ] Retreinamento das atuais classes
-
+- [ ] Adicionar reprodução de voz
+- [ ] Aumento do dataset para o retreinamento da RNA
+<hr>  
 
 # Autores
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
