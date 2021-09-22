@@ -7,7 +7,35 @@ Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrang
 # Tecnologias utilizadas 
 #### :snake: Python
 <hr>  
-         
+
+# Como executar o projeto
+```bash
+git clone https://github.com/GabrielKuroda/AWS-python-translator
+# ir para onde o .py do projeto estiver, executar o comando:
+
+python webserver.py
+
+# feito isso o projeto ja estará no ar.Logo após deve se usar o postman ou o insomnia, e utilizar o seguinte JSON para executar o POST:
+
+{
+    "image":"url da imagem desejada",
+    "languageTarget":" idioma alvo",
+    "languageOrigin":"idioma de origem",
+    "accessKey":"segredo",
+    "secretAccessKey":"segredo"
+}
+
+OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
+```
+
+# Próximos objetivos
+
+- [ ] Acréscimo de novas classes
+- [ ] Front-end
+- [ ] Adicionar voz
+- [ ] Retreinamento das atuais classes
+
+
 # Autores
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido Dos Santos (https://github.com/leonardosantos1)
