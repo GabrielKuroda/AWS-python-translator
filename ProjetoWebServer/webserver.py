@@ -7,7 +7,6 @@ from urllib import request
 from io import BytesIO
 import logging
 import boto3
-import pykakasi
 import json
 
 class Requests(BaseHTTPRequestHandler):
@@ -18,49 +17,90 @@ class Requests(BaseHTTPRequestHandler):
     accessKey = ""
     secretAccessKey = ""
     
-    def callAWSTranslate(self,phrase):
-
-        global languageTarget
-        global accessKey
-        global secretAccessKey
+    def translate(self,phrase,target,origin):
 
         client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= accessKey,
             aws_secret_access_key= secretAccessKey)
 
-        return client.translate_text(Text=phrase, SourceLanguageCode=languageOrigin,TargetLanguageCode=languageTarget)
+        return client.translate_text(Text=phrase, SourceLanguageCode=origin,TargetLanguageCode=target)['TranslatedText']
 
-    def translate(self,phrase):
-        return self.callAWSTranslate(phrase)['TranslatedText']
-
-    def getLanguageName(self,languageCode):
-        global languageOrigin
-
-        languages = ['Portuguese','Japanese','English','Spanish']
-        if languageOrigin in "pt":
-            languages = ['Português','Japonês','Inglês','Espanhol']
-        elif languageOrigin in "ja":
-            languages = ['ポルトガル語','日本語','英語','スペイン語']
-        elif languageOrigin in "en":
-            languages = ['Portuguese','Japanese','English','Spanish']
+    def getLanguageName(self,languageCode,typeLanguage):
         
+        if typeLanguage in "Origin":
+            languages = ['Origin Language: Portuguese','Origin Language: Japanese','Origin Language: English','Origin Language: Spanish']
+        else:
+            languages = ['Target Language: Portuguese','Target Language: Japanese','Target Language: English','Target Language: Spanish']
+
         if languageCode in "pt":
-            return languages[0]
+            return self.translate(languages[0],languageOrigin,"en")
         elif languageCode in "ja":
-            return languages[1]
+            return self.translate(languages[1],languageOrigin,"en")
         elif languageCode in "en":
-            return languages[2]
-        elif languageCode in "sp":
-            return languages[3]
+            return self.translate(languages[2],languageOrigin,"en")
+        elif languageCode in "es":
+            return self.translate(languages[3],languageOrigin,"en")
         else:
             return "Unknown"
-            
 
-    def getLanguageFrom(self,phrase):
-
-        result = self.callAWSTranslate(phrase)
-
-        return self.getLanguageName(result['SourceLanguageCode'])
+    def getTitle(self,languageCode):
         
+        title = "Translator with IA"
+
+        if languageCode in "pt":
+            return self.translate(title,languageOrigin,"en")
+        elif languageCode in "ja":
+            return self.translate(title,languageOrigin,"en")
+        elif languageCode in "en":
+            return self.translate(title,languageOrigin,"en")
+        elif languageCode in "es":
+            return self.translate(title,languageOrigin,"en")
+        else:
+            return "Unknown"
+
+    def getIAResult(self,languageCode, result):
+        
+        text = "IA Result: " + result
+
+        if languageCode in "pt":
+            return self.translate(text,languageOrigin,"en") 
+        elif languageCode in "ja":
+            return self.translate(text,languageOrigin,"en")
+        elif languageCode in "en":
+            return self.translate(text,languageOrigin,"en")
+        elif languageCode in "es":
+            return self.translate(text,languageOrigin,"en")
+        else:
+            return "Unknown"
+
+    def getTranslatorResult(self,languageCode, translated):
+        
+        text = "Translated: "
+
+        if languageCode in "pt":
+            return self.translate(text,languageOrigin,"en") + translated
+        elif languageCode in "ja":
+            return self.translate(text,languageOrigin,"en") + translated
+        elif languageCode in "en":
+            return self.translate(text,languageOrigin,"en") + translated
+        elif languageCode in "es":
+            return self.translate(text,languageOrigin,"en") + translated
+        else:
+            return "Unknown"
+
+    def getReturn(self,result,score):
+
+        translated = self.translate(result,languageTarget,languageOrigin)
+
+        self.wfile.write(bytes("<html><head><title>%s</title></head><meta charset=\"utf-8\"/>" % self.getTitle(languageOrigin), "utf-8"))
+        self.wfile.write(bytes("<body>", "utf-8"))
+        self.wfile.write(bytes("<p>%s</p>" % self.getLanguageName(languageOrigin,"Origin"), "utf-8"))
+        self.wfile.write(bytes("<p>%s</p>" % self.getIAResult(languageOrigin,result), "utf-8"))
+        self.wfile.write(bytes("<p>%s</p>" % self.getLanguageName(languageTarget,"Target"), "utf-8"))
+        self.wfile.write(bytes("<p>%s</p>" % self.getTranslatorResult(languageOrigin,translated), "utf-8"))
+        self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
+        self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
+        self.wfile.write(bytes("</body></html>", "utf-8"))
+            
     def _set_response(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
@@ -73,16 +113,7 @@ class Requests(BaseHTTPRequestHandler):
 
         self._set_response()
 
-        class_namesPT = ['borboleta', 'cachorro', 'dente-de-leao', 'gafanhoto', 'gato', 'girassol', 'joaninha', 'libelulas', 'margarida', 'monitor', 'mosquito', 'mouse', 'rosa', 'teclado', 'tulipa']
-        class_namesJA = ['蝶', '犬', 'タンポポ', 'イナゴ', '猫', 'ひまわり', 'テントウムシ', 'トンボ', 'デイジー', 'モニター', '蚊', 'マウス', 'バラ', 'キーボード', 'チューリップ']
-        class_namesEN = ['butterfly', 'dog', 'dandelion', 'locust', 'cat', 'sunflower', 'ladybird', 'dragonflies', 'daisy', 'monitor', 'mosquito', 'mouse', 'rose', 'keyboard', 'tulip']
-
-        if languageOrigin in "pt":
-            class_names = class_namesPT
-        elif languageOrigin in "ja":
-            class_names = class_namesJA
-        elif languageOrigin in "en":
-            class_names = class_namesEN
+        class_names = ['butterfly', 'dog', 'dandelion', 'locust', 'cat', 'sunflower', 'ladybird', 'dragonflies', 'daisy', 'monitor', 'mosquito', 'mouse', 'rose', 'keyboard', 'tulip']
 
         model = keras.models.load_model('projetoUsandoTransferLearning.pth')
         img_height = 130
@@ -96,48 +127,7 @@ class Requests(BaseHTTPRequestHandler):
         score = tf.nn.softmax(predictions[0])
         result = class_names[np.argmax(score)]
 
-        tranlated = self.translate(result)
-
-        if languageOrigin in "pt":
-            self.wfile.write(bytes("<html><head><title>Tradutor</title></head><meta charset=\"utf-8\" />", "utf-8"))
-            self.wfile.write(bytes("<body>", "utf-8"))
-            self.wfile.write(bytes("<p>Idioma Origem: %s</p>" % self.getLanguageFrom(result), "utf-8"))
-            self.wfile.write(bytes("<p>Resultado: %s</p>" % result, "utf-8"))
-            self.wfile.write(bytes("<p>Idioma alvo: %s</p>" % self.getLanguageName(languageTarget), "utf-8"))
-            self.wfile.write(bytes("<p>Resultado Tradução: %s</p>" % tranlated, "utf-8"))
-            self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
-            self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
-            self.wfile.write(bytes("</body></html>", "utf-8"))
-        elif languageOrigin in "ja":
-            self.wfile.write(bytes("<html><head><title>翻訳</title></head><meta charset=\"utf-8\" />", "utf-8"))
-            self.wfile.write(bytes("<body>", "utf-8"))
-            self.wfile.write(bytes("<p>ソース言語: %s</p>" % self.getLanguageFrom(result), "utf-8"))
-            self.wfile.write(bytes("<p>結果: %s</p>" % result, "utf-8"))
-            self.wfile.write(bytes("<p>目標言語: %s</p>" % self.getLanguageName(languageTarget), "utf-8"))
-            self.wfile.write(bytes("<p>翻訳結果: %s</p>" % tranlated, "utf-8"))
-            self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
-            self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
-            self.wfile.write(bytes("</body></html>", "utf-8"))
-        elif languageOrigin in "en":
-            self.wfile.write(bytes("<html><head><title>Translator</title></head><meta charset=\"utf-8\" />", "utf-8"))
-            self.wfile.write(bytes("<body>", "utf-8"))
-            self.wfile.write(bytes("<p>Origin Language: %s</p>" % self.getLanguageFrom(result), "utf-8"))
-            self.wfile.write(bytes("<p>Result: %s</p>" % result, "utf-8"))
-            self.wfile.write(bytes("<p>Target Language: %s</p>" % self.getLanguageName(languageTarget), "utf-8"))
-            self.wfile.write(bytes("<p>Result Translated: %s</p>" % tranlated, "utf-8"))
-            self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
-            self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
-            self.wfile.write(bytes("</body></html>", "utf-8"))
-        else:
-            self.wfile.write(bytes("<html><head><title>Translator</title></head><meta charset=\"utf-8\" />", "utf-8"))
-            self.wfile.write(bytes("<body>", "utf-8"))
-            self.wfile.write(bytes("<p>Origin Language: %s</p>" % self.getLanguageFrom(result), "utf-8"))
-            self.wfile.write(bytes("<p>Result: %s</p>" % result, "utf-8"))
-            self.wfile.write(bytes("<p>Target Language: %s</p>" % self.getLanguageName(languageTarget), "utf-8"))
-            self.wfile.write(bytes("<p>Result Translated: %s</p>" % tranlated, "utf-8"))
-            self.wfile.write(bytes("<br>{:.2f}%<br>".format(100 * np.max(score)), "utf-8"))
-            self.wfile.write(bytes("<img src=\"%s\" alt=\"Image\" width=\"500\" height=\"600\">" % urlImage, "utf-8"))
-            self.wfile.write(bytes("</body></html>", "utf-8"))
+        self.getReturn(result,score)
 
     def do_POST(self):
         global urlImage
@@ -159,6 +149,7 @@ class Requests(BaseHTTPRequestHandler):
         self._set_response()
         self.wfile.write("Image Link: {}".format(urlImage).encode('utf-8'))
         self.wfile.write("language Target: {}".format(languageTarget).encode('utf-8'))
+        self.wfile.write("language Origin: {}".format(languageOrigin).encode('utf-8'))
 
 def run(server_class=HTTPServer, handler_class=Requests, port=8000):
     logging.basicConfig(level=logging.INFO)
