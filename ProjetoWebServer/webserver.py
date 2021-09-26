@@ -107,6 +107,7 @@ class Requests(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
+        
         global urlImage
         global languageTarget
         global languageOrigin
