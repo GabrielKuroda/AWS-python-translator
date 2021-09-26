@@ -16,7 +16,8 @@ class Requests(BaseHTTPRequestHandler):
     imageLink = ""
 
     def translate(self,phrase,target,origin):
-
+           
+        #Valores falsos
         client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= "AKIAZ562BTHPL62NNTNE",
             aws_secret_access_key= "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")
 
