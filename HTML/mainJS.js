@@ -110,7 +110,7 @@ function showOriginLanguage(language){
         document.getElementById("load").style.display = "none"
         document.getElementById("result_page").style.display = "block"
         document.getElementById("page_home").style.display = "none"
-      }, 3000);
+      }, 3500);
     
 }
 
@@ -119,4 +119,4 @@ function back() {
     document.getElementById("page_home").style.display = "block"
 }
 
- 
+

@@ -137,6 +137,7 @@
                         <br>
 
                         <button id="btnSend" type="button" class="btn btn-success" onclick="refreshIframe();">Submit</button>
+                        <button id="translat" type="button" class="btn btn-success" onclick="translator()">Translate</button>
     
                         <br>
                         <br>
@@ -149,9 +150,10 @@
             </div>
             <div id="result_page">
                 <center>
-                
-                <iframe id="result" name="Result" src="" allowTransparency="true" scrolling="no" frameborder="0" width="1100" height="750"></iframe>
-                <button id="btnBack" type="button" class="btn btn-success" onclick="back();">Back</button>
+                    <div class="embed-responsive embed-responsive-1by1">
+                        <iframe id=Result name="Result" class="embed-responsive-item" src="http://localhost:8000/" allowfullscreen allowTransparency="true" scrolling="no"></iframe>
+                    </div>
+                    <button id="btnBack" type="button" class="btn btn-success" onclick="back();">Back</button>
 
                 </center>
             </div>
