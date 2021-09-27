@@ -17,6 +17,7 @@ class Requests(BaseHTTPRequestHandler):
     imageLink = ""
 
     def translate(self,phrase,target,origin):
+<<<<<<< HEAD
 
         credencials = pd.read_csv('credencials\Credencials.csv', sep=',', encoding='utf-8')
         logging.info(credencials['Access key ID'][0])
@@ -24,6 +25,12 @@ class Requests(BaseHTTPRequestHandler):
         
         client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= credencials['Access key ID'][0],
             aws_secret_access_key= credencials['Secret access key'][0])
+=======
+           
+        #Valores falsos
+        client = boto3.client('translate', region_name="us-east-1",aws_access_key_id= "AKIAZ562BTHPL62NNTNE",
+            aws_secret_access_key= "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")
+>>>>>>> fe6a6a1bfdad54cbd149e3a4af9cf91088ebde93
 
         return client.translate_text(Text=phrase, SourceLanguageCode=origin,TargetLanguageCode=target)['TranslatedText']
 
