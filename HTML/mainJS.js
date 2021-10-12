@@ -7,23 +7,7 @@ let headers = {
 var url = "http://localhost:8000/";
 let languageOrigin = "en"
 let languageTarget = "en"
-
-function setup(){
-    language = "{ \"origin\":\""+languageOrigin+"\",\"target\":\""+languageTarget+"\"}";
-    result = ""
-    var myInit = { method: 'POST',
-               headers: headers,
-               mode: 'no-cors',
-               cache: 'default',
-               body: language };
-
-    var myRequest = new Request("http://localhost:8000/languages", myInit);
-
-    fetch(myRequest)
-    .then(res => res)
-    .catch(err => alert(err.message))
-
- }
+let imageCode = ""
 
 function showOriginLanguage(language){
     if(language === "pt"){
@@ -90,27 +74,25 @@ function showOriginLanguage(language){
 
  function refreshIframe() {
     document.getElementById("load").style.display = "block"
-    language = "{ \"origin\":\""+languageOrigin+"\",\"target\":\""+languageTarget+"\"}";
+
+    language = "{ \"origin\":\""+languageOrigin+"\",\"target\":\""+languageTarget+"\",\"image\":\""+imageCode+"\"}";
     var myInit = { method: 'POST',
                headers: headers,
                mode: 'no-cors',
                cache: 'default',
                body: language };
 
-    var myRequest = new Request("http://localhost:8000/", myInit);
-
+    var myRequest = new Request("http://127.0.0.1:8000/", myInit);
+ 
     fetch(myRequest)
     .then(res => res)
-    .catch(err => alert(err.message))
+    .catch(err => alert("Erro ao realizar POST"))
 
-    var ifr = document.getElementsByName('Result')[0];
-    ifr.src = "http://localhost:8000/";
+    url = "http://127.0.0.1:8000/";
 
     setTimeout(function(){
-        document.getElementById("load").style.display = "none"
-        document.getElementById("result_page").style.display = "block"
-        document.getElementById("page_home").style.display = "none"
-      }, 3500);
+        window.open(url,"_self")
+      }, 1500);
     
 }
 
@@ -118,5 +100,32 @@ function back() {
     document.getElementById("result_page").style.display = "none"
     document.getElementById("page_home").style.display = "block"
 }
+
+function onChangeImage(){
+    var fileName = document.getElementById("imgInp").value;
+    document.getElementById("imageLabel").innerHTML = fileName;
+
+    const [file] = imgInp.files
+    if (file) {
+        blah.src = URL.createObjectURL(file)
+    }
+    document.getElementById("imageDisplay").style.display = "block";
+
+    var image = document.querySelector(
+        'input[type=file]')['files'][0];
+  
+    var reader = new FileReader();
+
+    reader.onload = function () {
+        base64String = reader.result.replace("data:", "")
+            .replace(/^.+,/, "");
+        imageCode = base64String;
+    }
+
+    reader.readAsDataURL(image);
+
+}
+
+
 
 

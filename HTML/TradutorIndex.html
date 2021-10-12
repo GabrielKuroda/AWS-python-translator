@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body onload="setup()">
+    <body>
 
         <nav class="navbar navbar-expand-sm bg-success navbar-dark" id="navbar">
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -74,15 +74,15 @@
                     <center>
                         <h3>Insert an image:</h3>
                         <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imgInp" accept="image/*">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
+                            <input type="file" class="custom-file-input" id="imgInp" accept="image/*" onchange="onChangeImage()">
+                            <label id="imageLabel" class="custom-file-label" for="customFile">Choose file</label>
                         </div>
-                        
+                    
                         <br>
                         <br>
 
                         <div id="imageDisplay" aria-hidden='true'>
-                            <img id="blah" src="#" alt="your image" height="500" width="750"/>
+                            <img id="blah" src="" alt="your image" height="500" width="500"/>
                         </div>
                         
                         <br>
@@ -137,8 +137,7 @@
                         <br>
 
                         <button id="btnSend" type="button" class="btn btn-success" onclick="refreshIframe();">Submit</button>
-                        <button id="translat" type="button" class="btn btn-success" onclick="translator()">Translate</button>
-    
+
                         <br>
                         <br>
                         <div id="load">Carregado Resultado...</div>
@@ -148,34 +147,7 @@
                 </form>
         
             </div>
-            <div id="result_page">
-                <center>
-                    <div class="embed-responsive embed-responsive-1by1">
-                        <iframe id=Result name="Result" class="embed-responsive-item" src="http://localhost:8000/" allowfullscreen allowTransparency="true" scrolling="no"></iframe>
-                    </div>
-                    <button id="btnBack" type="button" class="btn btn-success" onclick="back();">Back</button>
-
-                </center>
-            </div>
         </div>
-
-        <script>
-            
-            $(".custom-file-input").on("change", function() {
-                var fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                
-            });
-            
-            imgInp.onchange = evt => {
-                const [file] = imgInp.files
-                if (file) {
-                    blah.src = URL.createObjectURL(file)
-                }
-                document.getElementById("imageDisplay").style.display = "block";
-            }
-            
-        </script>
 
     </body>
 
