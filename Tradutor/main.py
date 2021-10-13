@@ -6,11 +6,11 @@ from app import app
 import boto3
 import webbrowser
 import pandas as pd
-import time
-import logging
+from detect import DetectorImg
 
 webbrowser.open("http://127.0.0.1:8050/")
 
+detector = DetectorImg()
 
 input_file = dcc.Upload(
                     id='upload-data',
@@ -40,7 +40,7 @@ origin_lang = dcc.Dropdown(
             {'label': 'English', 'value': 'en'}
         ],
         multi=False,
-        value="EN"
+        value="en"
     )
 
 target_lang = dcc.Dropdown(
@@ -51,8 +51,7 @@ target_lang = dcc.Dropdown(
             {'label': 'Spanish', 'value': 'es'},
             {'label': 'English', 'value': 'en'}
         ],
-        multi=False,
-        value="EN"
+        multi=False
     )
 
 app.layout = dbc.Container([
@@ -88,6 +87,8 @@ app.layout = dbc.Container([
                     children=html.Pre('University Center of Jaguariúna (UniFAJ)', style={'textAlign': 'center', 'margin': '10px'})),
             html.Div(id='student_text',
                     children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
+            html.Div(id='professor_text',
+                    children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
         ])
     )
 ])
@@ -99,6 +100,7 @@ app.layout = dbc.Container([
               Output('image_text', 'children'),
               Output('facul_text', 'children'),
               Output('student_text', 'children'),
+              Output('professor_text', 'children'),
               [Input('originLang', 'value')])
 def update_page(value):
     labelOrigin = "Origin Language"
@@ -107,28 +109,35 @@ def update_page(value):
     labelImage = "Image"
     labelFacul = 'University Center of Jaguariúna (UniFAJ)'
     labelStudents = 'Students:  Gabriel Kuroda, Leonardo Santos'
-
+    labelProfessor = 'Professor:  Vandeir Aniceto'
+    
     title = translate(labelTitle,value,'en')
     textOrigin = translate(labelOrigin,value,'en')
     textTarget = translate(labelTarget,value,'en')
     image = translate(labelImage,value,'en')
     facul = translate(labelFacul,value,'en')
     students = translate(labelStudents,value,'en')
+    professor = translate(labelProfessor,value,'en')
     
-    return html.H1(title,style={"textAlign": "center"}), html.H3(textOrigin), html.H3(textTarget), html.H3(image) , html.Pre(facul, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(students, style={'textAlign': 'center', 'margin': '10px'})
+    return html.H1(title,style={"textAlign": "center"}), html.H3(textOrigin), html.H3(textTarget), html.H3(image) , html.Pre(facul, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(students, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(professor, style={'textAlign': 'center', 'margin': '10px'})
 
 def parse_contents(contents,origin,target):
-    text = "Teste"
+    score = detector.getScore(contents)
+    result = detector.getResult()
     return dbc.Row([
                     dbc.Col([
-                        html.H5(translate('Analyzed Image: ',origin,'en')),
+                        html.H3(translate('Analyzed Image: ',origin,'en')),
+                        html.Br(),
+                        html.H5(translate(result,origin,'en')), 
                         html.Br(),
                         html.Div(html.Img(src=contents, style={'height':'50%', 'width':'80%'})),
                     ],),
                     dbc.Col([
-                        html.H5(translate('Result: ',origin,'en')), 
+                        html.H3(translate('Result: ',origin,'en')), 
                         html.Br(),
-                        html.P(translate(text,target,origin)),
+                        html.H5(score), 
+                        html.Br(),
+                        html.H5(translate(result,target,origin)), 
                     ],)
             ])
 
@@ -151,7 +160,6 @@ def translate(phrase,target,origin):
         aws_secret_access_key= credencials['Secret access key'][0])
 
     return client.translate_text(Text=phrase, SourceLanguageCode=origin,TargetLanguageCode=target)['TranslatedText']
-
-
+        
 if __name__=='__main__':
     app.run_server(debug=False)
