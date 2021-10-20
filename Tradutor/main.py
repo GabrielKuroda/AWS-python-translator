@@ -54,43 +54,66 @@ target_lang = dcc.Dropdown(
         multi=False
     )
 
+translator = dcc.Loading(
+                    id="loading-1",
+                    type="default",
+                    children=html.Div
+                    ([
+                        html.Div(
+                            html.Img(src='/assets/logo.jpeg', style={'height':'130px', 'width':'220px', "display": "block", 'margin-left': 'auto', 'margin-right': 'auto'})),
+                        html.Hr(),
+                        html.Div(id='title_text',
+                                children=html.H1('Translator with IA',style={"textAlign": "center"})),
+                        html.Hr(),
+                        html.Div(id='origin_text',
+                                children=html.H3('Origin Language')),
+                        dbc.Col(origin_lang, width=12),
+                        html.Hr(),
+                        html.Div(id='target_text',
+                                children=html.H3('Target Language')),
+                        dbc.Col(target_lang, width=12),
+                        html.Hr(),
+                        html.Div(id='image_text',
+                                children=html.H3('Image')),
+                        dbc.Col(input_file, width=12),
+                        html.Div(
+                            [
+                            html.Br(),
+                            html.Div(id='output-image-upload'),
+                            html.Hr()
+                        ]),
+                        html.Div(id='facul_text',
+                                children=html.Pre('University Center of Jaguariúna (UniFAJ)', style={'textAlign': 'center', 'margin': '10px'})),
+                        html.Div(id='student_text',
+                                children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
+                        html.Div(id='professor_text',
+                                children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
+                    ])
+                )
+
+
+speaker = dcc.Graph(
+                    figure={
+                        'data': [
+                            {'x': [1, 2, 3], 'y': [2, 4, 3],
+                                'type': 'bar', 'name': 'SF'},
+                            {'x': [1, 2, 3], 'y': [5, 4, 3],
+                            'type': 'bar', 'name': u'Montréal'},
+                        ]
+                    }
+                )
+
 app.layout = dbc.Container([
-    dcc.Loading(
-        id="loading-1",
-        type="default",
-        children=html.Div
-        ([
-            html.Div(
-                html.Img(src='/assets/logo.jpeg', style={'height':'130px', 'width':'220px', "display": "block", 'margin-left': 'auto', 'margin-right': 'auto'})),
-            html.Hr(),
-            html.Div(id='title_text',
-                    children=html.H1('Translator with IA',style={"textAlign": "center"})),
-            html.Hr(),
-            html.Div(id='origin_text',
-                    children=html.H3('Origin Language')),
-            dbc.Col(origin_lang, width=12),
-            html.Hr(),
-            html.Div(id='target_text',
-                    children=html.H3('Target Language')),
-            dbc.Col(target_lang, width=12),
-            html.Hr(),
-            html.Div(id='image_text',
-                    children=html.H3('Image')),
-            dbc.Col(input_file, width=12),
-            html.Div(
-                [
-                html.Br(),
-                html.Div(id='output-image-upload'),
-                html.Hr()
+    html.Div([
+        dcc.Tabs([
+            dcc.Tab(id="tab1",label='Translator with IA', children=[
+                translator
             ]),
-            html.Div(id='facul_text',
-                    children=html.Pre('University Center of Jaguariúna (UniFAJ)', style={'textAlign': 'center', 'margin': '10px'})),
-            html.Div(id='student_text',
-                    children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
-            html.Div(id='professor_text',
-                    children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
+            dcc.Tab(label='Tab three', children=[
+                speaker
+            ]),
         ])
-    )
+    ])
 ])
 
 
@@ -101,6 +124,7 @@ app.layout = dbc.Container([
               Output('facul_text', 'children'),
               Output('student_text', 'children'),
               Output('professor_text', 'children'),
+              Output('tab1','label'),
               [Input('originLang', 'value')])
 def update_page(value):
     labelOrigin = "Origin Language"
@@ -119,7 +143,7 @@ def update_page(value):
     students = translate(labelStudents,value,'en')
     professor = translate(labelProfessor,value,'en')
     
-    return html.H1(title,style={"textAlign": "center"}), html.H3(textOrigin), html.H3(textTarget), html.H3(image) , html.Pre(facul, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(students, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(professor, style={'textAlign': 'center', 'margin': '10px'})
+    return html.H1(title,style={"textAlign": "center"}), html.H3(textOrigin), html.H3(textTarget), html.H3(image) , html.Pre(facul, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(students, style={'textAlign': 'center', 'margin': '10px'}) , html.Pre(professor, style={'textAlign': 'center', 'margin': '10px'}),title
 
 def parse_contents(contents,origin,target):
     score = detector.getScore(contents)
