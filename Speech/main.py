@@ -33,8 +33,9 @@ input_file = dcc.Upload(
                 )
 
 choose_lang = dcc.RadioItems(id='lang_chosen',
-    options=[{'label':' Português   .', "value": 'por'},{'label':' Inglês ', "value": 'eng'}],
-    value='por',
+    options=[{'label':' Português   .', "value": 'por'}, {'label':' Inglês ', "value": 'eng'}
+    ,{'label':' Japonês ', "value": 'jap'}, {'label':' Espanhol ', "value": 'esp'}],
+    value='jap',
     labelStyle={}
 )  
 
@@ -45,6 +46,24 @@ app.layout = dbc.Container([
     html.Hr(),
 
     dbc.Col([input_file, choose_lang], width=12),
+
+
+    html.Div([
+        html.P('Dash converts Python classes into HTML'),
+        html.P("This conversion happens behind the scenes by Dash's JavaScript front-end")
+    ]),
+    
+    html.Div([
+        dcc.Dropdown(
+            id='demo-dropdown',
+            options=[
+                {'label': 'New York City', 'value': 'NYC'},
+                {'label': 'Montreal', 'value': 'MTL'},
+                {'label': 'San Francisco', 'value': 'SF'}
+            ],
+            value='NYC'
+        ),
+    ]),
 
     html.Div(
         [

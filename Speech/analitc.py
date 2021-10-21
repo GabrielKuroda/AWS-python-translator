@@ -17,6 +17,8 @@ class Analytics:
     VOICE={}
     VOICE['eng'] = configs['PATH_EN'][0]
     VOICE['por'] = configs['PATH_PT'][0]
+    VOICE['jap'] = configs['PATH_JP'][0]
+    VOICE['esp'] = configs['PATH_ES'][0]
     def read(self, path):
         #img = Image.open(path)
         img = Image.open(urlopen(path))
