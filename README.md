@@ -35,7 +35,6 @@ OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
 - [ ] Front-end
 - [ ] Adicionar reprodução de voz
 - [ ] Aumento do dataset para o retreinamento da RNA
-- [ ] Implementação do Inference
 <hr>  
 
 # Autores
