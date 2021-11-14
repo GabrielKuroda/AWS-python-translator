@@ -6,6 +6,8 @@ from PIL import Image
 from urllib import request
 from io import BytesIO
 
+
+
 class DetectorImg:
 
     MODEL = keras.models.load_model('projetoUsandoTransferLearning.pth')

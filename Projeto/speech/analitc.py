@@ -2,7 +2,7 @@ import pytesseract
 import pyttsx3
 from PIL import Image
 from urllib.request import urlopen
-from utils import consult_csv
+from speech.utils import consult_csv
 import time
 
 configs = consult_csv()

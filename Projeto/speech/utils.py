@@ -3,7 +3,7 @@ import csv
 def consult_csv():
     configs={}
     gnore = [' ', '[', '#']
-    with open('configs.txt', newline='', encoding='utf-8') as csvfile:
+    with open('speech\configs.txt', newline='', encoding='utf-8') as csvfile:
         spamreader = csv.reader(csvfile, delimiter='\n')
         for row in spamreader:
             if row!=[]:

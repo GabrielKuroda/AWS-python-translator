@@ -6,8 +6,8 @@ from app import app
 import boto3
 import webbrowser
 import pandas as pd
-from detect import DetectorImg
-from analitc import Analytics
+from translator.detect import DetectorImg
+from speech.analitc import Analytics
 
 webbrowser.open("http://127.0.0.1:8050/")
 
