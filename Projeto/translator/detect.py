@@ -6,12 +6,10 @@ from PIL import Image
 from urllib import request
 from io import BytesIO
 
-
-
 class DetectorImg:
 
-    MODEL = keras.models.load_model('projetoUsandoTransferLearning.pth')
-    CLASS_NAMES = ['Butterfly', 'Dog', 'Dandelion', 'Locust', 'Cat', 'Sunflower', 'Ladybird', 'Dragonflies', 'Daisy', 'Monitor', 'Mosquito', 'Mouse', 'Rose', 'Keyboard', 'Tulip']
+    MODEL = keras.models.load_model('IA.pth')
+    CLASS_NAMES = ['bee', 'spider', 'bicycle', 'butterfly', 'dog', 'car', 'horse', 'dandelion', 'elephant', 'squirrel', 'grasshopper', ' chicken ',' cat ',' sunflower ',' hamster ',' ladybug ',' lion ',' dragonfly ',' daisy ',' monitor ',' mosquito ',' motorbike ',' mouse ',' sheep ' , 'panda', 'rose', 'turtle', 'keyboard', 'tulip', 'cow', 'zebra']
     SCORE = ""
 
     def callIa(self,contents):

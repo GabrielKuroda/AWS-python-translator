@@ -157,7 +157,7 @@ translator = dcc.Loading(
                         html.Div(id='student_text',
                                 children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
                         html.Div(id='professor_text',
-                                children=html.Pre('Students:  Gabriel Kuroda, Leonardo Santos', style={'textAlign': 'center', 'margin': '10px'})),
+                                children=html.Pre('Professor:  Vandeir Aniceto', style={'textAlign': 'center', 'margin': '10px'})),
                     ])
                 )
 
