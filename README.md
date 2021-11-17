@@ -1,11 +1,28 @@
+# Tradutor/Speech
+
 # Sobre o projeto
-Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrangeiros. Nosso projeto é composto uma RNA treinada por nós, com o objetivo de               classficar imagens que o usuario irá enviar para a mesma
-### Como funciona      
- O usuário irá enviar uma imagem, onde está imagem será classificada por uma rede neural, após isso deverá ser escolhido o idioma preferido para a tradução da imagem que foi classificada anteriormente
+Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrangeiros. Nosso projeto é composto uma RNA treinada por nós, com o objetivo de classficar imagens que o usuario irá enviar para a mesma
+
+## Objetivo do projeto
+O projeto tem como objetivo ajudar as pessoas a aprenderem novas palavras em idiomas estrangeiros e também a saber a pronúncia das mesmas
+
+### Como funciona 
+
+ No projeto existem 3 abas, na aba da esquerda é onde fica a parte onde o usuário irá enviar uma imagem, e a RNA irá fazer a classificação da imagem retornando o texto para que o tradutor faça seu papel e traduza para o idioma selecionado. Na aba da direita é onde fica a parte de speech, onde o usuário irá enviar uma imagem, e a IA irá reconhecer o texto que existe na imagem e irá reproduzir o mesmo. Por fim, na aba do meio é onde os dois serviços se juntam, onde o usuário irá enviar uma imagem, a RNA irá fazer a classificação e retornar o texto traduzido, irá enviar o texto para a IA de speech, onde o mesmo irá reproduzir no idioma escolhido.
 <hr>  
       
-# Tecnologias utilizadas 
-#### :snake: Python
+# Tecnologias utilizadas
+## Linguagens utilizadas
+- :snake: Python
+
+## Bibliotecas/Frameworks utilizadas
+- Keras
+- Tensorflow
+- Pyttsx3
+- Dash
+- Pytesseract
+- Boto3(AWS)
+
 <hr>  
 
 # Como executar o projeto
@@ -17,19 +34,12 @@ python webserver.py
 
 # feito isso o projeto ja estará no ar.Logo após deve se usar o postman ou o insomnia, e utilizar o seguinte JSON para executar o POST:
 
-{
-    "image":"url da imagem desejada",
-    "languageTarget":" idioma alvo",
-    "languageOrigin":"idioma de origem",
-    "accessKey":"segredo",
-    "secretAccessKey":"segredo"
-}
 
-OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
+OBS: GET deve ser realizados no devido endereço: localhost:8000
 ```
 <hr>  
 
-# Próximos objetivos
+# Como executar o projeto
 
 - [ ] Acréscimo de novas classes
 - [ ] Aumento do dataset para o retreinamento da RNA
@@ -40,7 +50,9 @@ Décio Manarini Neto <br>
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido dos Santos (https://github.com/leonardosantos1) <br>
 Pedro Henrique Longo https://github.com/PedroHLongo <br>
-Wallace Everton Cavalcante de Paiva - 11921375
+Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
+
+# Professor Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 <hr>  
 	 
 <br>
