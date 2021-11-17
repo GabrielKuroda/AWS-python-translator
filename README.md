@@ -39,7 +39,7 @@ OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
 Décio Manarini Neto <br>
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido dos Santos (https://github.com/leonardosantos1)
-Pedro Henrique Longo https://github.com/PedroHLongo
+Pedro Henrique Longo https://github.com/PedroHLongo <br>
 Wallace Everton Cavalcante de Paiva - 11921375
 <hr>  
 	 
