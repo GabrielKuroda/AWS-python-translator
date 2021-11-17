@@ -32,18 +32,16 @@ OBS: GET e POST devem ser realizados no devido endereço: localhost:8000
 # Próximos objetivos
 
 - [ ] Acréscimo de novas classes
-- [ ] Front-end
-- [ ] Adicionar reprodução de voz
 - [ ] Aumento do dataset para o retreinamento da RNA
 <hr>  
 
 # Autores
+Décio Manarini Neto <br>
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
-Leonardo Aparecido Dos Santos (https://github.com/leonardosantos1)
+Leonardo Aparecido dos Santos (https://github.com/leonardosantos1)
+Pedro Henrique Longo https://github.com/PedroHLongo
+Wallace Everton Cavalcante de Paiva - 11921375
 <hr>  
 	 
 <br>
 <br>
-<h3 align="center"> 
-	🚧  Projeto 🚀 Em construção...  🚧
-</h3>
