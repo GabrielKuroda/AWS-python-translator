@@ -76,10 +76,6 @@ Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 - https://pypi.org/project/pytesseract/
 - https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
 
-## Videos utilizados para desenvolvimento da RNA
-- https://www.youtube.com/watch?v=qDuVk4HPZ1g&list=LL&index=19&t=2713s
-- https://www.youtube.com/watch?v=fbxVrARF0a8&list=LL&index=24&t=1541s
-
 
 <br>
 <br>
