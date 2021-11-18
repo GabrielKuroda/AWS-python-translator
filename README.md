@@ -30,7 +30,7 @@ O projeto tem como objetivo ajudar as pessoas a aprenderem novas palavras em idi
 git clone https://github.com/GabrielKuroda/AWS-python-translator
 # ir para onde o .py do projeto estiver, executar o comando:
 
-python webserver.py
+python main.py
 
 # feito isso o projeto ja estará no ar.Logo após deve se usar o postman ou o insomnia, e utilizar o seguinte JSON para executar o POST:
 
