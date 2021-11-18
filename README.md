@@ -63,10 +63,6 @@ Pedro Henrique Longo https://github.com/PedroHLongo <br>
 Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
 <hr>
 
-# Professor 
-Vandeir, UNIFAJ - Ciência da Computação 6º semestre
-<hr>  
-
 # Referências utilizadas
 ## Documentações utilizadas
 - https://keras.io/api/
@@ -75,7 +71,10 @@ Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 - https://dash.plotly.com/
 - https://pypi.org/project/pytesseract/
 - https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+<hr>
 
-
+# Professor 
+Vandeir, UNIFAJ - Ciência da Computação 6º semestre
+<hr>  
 <br>
 <br>
