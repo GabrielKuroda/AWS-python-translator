@@ -9,7 +9,7 @@ from io import BytesIO
 class DetectorImg:
 
     MODEL = keras.models.load_model('IA.pth')
-    CLASS_NAMES = ['bee', 'spider', 'bicycle', 'butterfly', 'dog', 'car', 'horse', 'dandelion', 'elephant', 'squirrel', 'grasshopper', ' chicken ',' cat ',' sunflower ',' hamster ',' ladybug ',' lion ',' dragonfly ',' daisy ',' monitor ',' mosquito ',' motorbike ',' mouse ',' sheep ' , 'panda', 'rose', 'turtle', 'keyboard', 'tulip', 'cow', 'zebra']
+    CLASS_NAMES = ['bee', 'spider', 'bicycle', 'butterfly', 'dog', 'car', 'horse', 'rabbit', 'dandelion', 'elephant', 'squirrel', 'grasshopper', 'chicken', 'cat', 'giraffe', 'sunflower', 'hamster', 'ladybug', 'lion', 'dragonfly', 'daisy', 'monitor', 'mosquito', 'motorcycle', 'mouse', 'sheep', 'panda', 'rose', 'turtle', 'keyboard', 'tulip', 'cow', 'deer', 'zebra']
     SCORE = ""
 
     def callIa(self,contents):
