@@ -1,7 +1,7 @@
 # Tradutor/Speech
 
 # Sobre o projeto
-Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrangeiros. Nosso projeto é composto uma RNA treinada por nós, com o objetivo de classficar imagens que o usuario irá enviar para a mesma
+Nosso projeto visa ajudar pessoas a aprenderem novas palavras de idiomas estrangeiros junto com a pronúncia da mesma. Nosso projeto é composto uma RNA treinada por nós, com o objetivo de classficar imagens que o usuario irá enviar para a mesma.
 
 ## Objetivo do projeto
 O projeto tem como objetivo ajudar as pessoas a aprenderem novas palavras em idiomas estrangeiros e também a saber a pronúncia das mesmas
