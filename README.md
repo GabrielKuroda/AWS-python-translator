@@ -59,7 +59,7 @@ OBS: GET deve ser realizados no devido endereço: localhost:8000
 Décio Manarini Neto (https://github.com/DecioManarini) <br>
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido dos Santos (https://github.com/leonardosantos1) <br>
-Pedro Henrique Longo https://github.com/PedroHLongo <br>
+Pedro Henrique Longo (https://github.com/PedroHLongo) <br>
 Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
 <hr>
 
