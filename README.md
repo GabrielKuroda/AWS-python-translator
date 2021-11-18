@@ -45,14 +45,22 @@ OBS: GET deve ser realizados no devido endereço: localhost:8000
 - [ ] Aumento do dataset para o retreinamento da RNA
 <hr>  
 
+#Observações do projeto
+### - Nossa RNA não irá funcionar corretamente com formatores de imagens diferentes de: .jpg, .jpeg
+### - Classes utilizadas no projeto: ['abelha', 'aranha', 'bicicleta', 'borboleta', 'cachorro', 'carro', 'cavalo', 'coelho', 'dente-de-leao', 'elefante', 'esquilo', 'gafanhoto', 'galinha', 'gato', 'girafa', 'girassol', 'hamster', 'joaninha', 'leao', 'libelula', 'margarida', 'monitor', 'mosquito', 'moto', 'mouse', 'ovelha', 'panda', 'rosa', 'tartaruga', 'teclado', 'tulipa', 'vaca', 'veado', 'zebra']
+### - Nosso dataset foi removido do github por motivos que os commits estavam passando do tamanho suportado pelo github (iremos adicionar um link, onde terá a opção de realizar download do dataset utilizado para treino da RNA)
+
+<hr>  
+
 # Autores
-Décio Manarini Neto <br>
+Décio Manarini Neto (https://github.com/DecioManarini) <br>
 Gabriel Tatsuya Avi Kuroda (https://github.com/GabrielKuroda) <br>
 Leonardo Aparecido dos Santos (https://github.com/leonardosantos1) <br>
 Pedro Henrique Longo https://github.com/PedroHLongo <br>
 Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
 
-# Professor Vandeir, UNIFAJ - Ciência da Computação 6º semestre
+# Professor 
+##Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 <hr>  
 	 
 <br>
