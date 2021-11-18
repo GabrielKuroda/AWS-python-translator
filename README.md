@@ -67,18 +67,18 @@ Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
 Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 <hr>  
 
-#Referências utilizadas
-##Documentações utilizadas
-https://keras.io/api/
-https://www.tensorflow.org/api_docs
-https://pyttsx3.readthedocs.io/en/latest/
-https://dash.plotly.com/
-https://pypi.org/project/pytesseract/
-https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+# Referências utilizadas
+## Documentações utilizadas
+- https://keras.io/api/
+- https://www.tensorflow.org/api_docs
+- https://pyttsx3.readthedocs.io/en/latest/
+- https://dash.plotly.com/
+- https://pypi.org/project/pytesseract/
+- https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
 
-##Videos utilizados para desenvolvimento da RNA
-https://www.youtube.com/watch?v=qDuVk4HPZ1g&list=LL&index=19&t=2713s
-https://www.youtube.com/watch?v=fbxVrARF0a8&list=LL&index=24&t=1541s
+## Videos utilizados para desenvolvimento da RNA
+- https://www.youtube.com/watch?v=qDuVk4HPZ1g&list=LL&index=19&t=2713s
+- https://www.youtube.com/watch?v=fbxVrARF0a8&list=LL&index=24&t=1541s
 
 
 <br>
