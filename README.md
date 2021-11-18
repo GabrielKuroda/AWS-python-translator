@@ -63,7 +63,7 @@ Pedro Henrique Longo https://github.com/PedroHLongo <br>
 Wallace Everton Cavalcante de Paiva (https://github.com/WallaceCavalcante) <br>
 
 # Professor 
-##Vandeir, UNIFAJ - Ciência da Computação 6º semestre
+Vandeir, UNIFAJ - Ciência da Computação 6º semestre
 <hr>  
 	 
 <br>
