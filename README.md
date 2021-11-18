@@ -46,9 +46,12 @@ OBS: GET deve ser realizados no devido endereço: localhost:8000
 <hr>  
 
 # Observações do projeto
-### - Nossa RNA não irá funcionar corretamente com formatores de imagens diferentes de: .jpg, .jpeg
-### - Classes utilizadas no projeto: ['abelha', 'aranha', 'bicicleta', 'borboleta', 'cachorro', 'carro', 'cavalo', 'coelho', 'dente-de-leao', 'elefante', 'esquilo', 'gafanhoto', 'galinha', 'gato', 'girafa', 'girassol', 'hamster', 'joaninha', 'leao', 'libelula', 'margarida', 'monitor', 'mosquito', 'moto', 'mouse', 'ovelha', 'panda', 'rosa', 'tartaruga', 'teclado', 'tulipa', 'vaca', 'veado', 'zebra']
-### - Nosso dataset foi removido do github por motivos que os commits estavam passando do tamanho suportado pelo github (iremos adicionar um link, onde terá a opção de realizar download do dataset utilizado para treino da RNA)
+
+- Nossa RNA não irá funcionar corretamente com formatores de imagens diferentes de: .jpg, .jpeg
+
+- Classes utilizadas no projeto: ['abelha', 'aranha', 'bicicleta', 'borboleta', 'cachorro', 'carro', 'cavalo', 'coelho', 'dente-de-leao', 'elefante', 'esquilo', 'gafanhoto', 'galinha', 'gato', 'girafa', 'girassol', 'hamster', 'joaninha', 'leao', 'libelula', 'margarida', 'monitor', 'mosquito', 'moto', 'mouse', 'ovelha', 'panda', 'rosa', 'tartaruga', 'teclado', 'tulipa', 'vaca', 'veado', 'zebra']
+
+- Nosso dataset foi removido do github por motivos que os commits estavam passando do tamanho suportado pelo github (iremos adicionar um link, onde terá a opção de realizar download do dataset utilizado para o treino da RNA)
 
 <hr>  
 
